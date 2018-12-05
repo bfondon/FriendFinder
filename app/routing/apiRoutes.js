@@ -35,13 +35,6 @@ app.post("/api/friends", function(req, res) {
     console.log(bestMatch);
     res.json(bestMatch);    
     friends.push(newFriend);
-    
-    //Have total scores for existing friends
-    //loop through existing friends to find closest score
-
     }
 );
 }
-
-//if you get req.body to console log friend data,
-//you are getting close.

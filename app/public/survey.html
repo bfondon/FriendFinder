@@ -180,16 +180,40 @@
           console.log("home.html", data);
           console.log("New friend created.");
         })
+        displayResult();
     });
-    //Need to display the best match via a bootstrap modal.
-    //Not sure how to dynamically create the modal and display the result
-    //though the best match does show in the terminal.
-    // function displayBestMatch(){
-    // $.post("/api/survey", newResponse)
-    //            .then(function (bestMatch) {
-    //              var displayfriend = $("<div class ='modal'>");
-                              
- 
+  
+    //Dynamically create Modal
+    function displayResult(){
+    <div id="resultsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title"><strong>Best Match</strong></h2>
+          </div>
+          <div class="modal-body">
+            <h2 id="matchName"></h2>
+            <img id="matchImg" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+      //I have no idea why text below is not colored like everything else
+      $.post(currentURL + "/api/friends", userData, function(bestMatch){
+    $("#matchName").text(bestMatch.name);
+    $('#matchImg').attr("src", bestMatch.photo);
+
+    // Show the modal with the best match 
+    $("#resultsModal").modal('toggle');
+      });
+    </div>                          
+  };
   </script>
 
 </body>
